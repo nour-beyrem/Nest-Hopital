@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
+import { PatientModule } from './patient/patient.module';
+import { MedicamentModule } from './medicament/medicament.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -19,7 +21,7 @@ import { UserModule } from './user/user.module';
   }), ConfigModule.forRoot({
     isGlobal: true
     
-  }), UserModule,],
+  }), UserModule, PatientModule, MedicamentModule,],
   controllers: [AppController],
   providers: [AppService],
 })

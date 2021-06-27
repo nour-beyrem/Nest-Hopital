@@ -51,18 +51,19 @@ export class userEntity extends TimestampEntity{
 
    
   
-   
-   
-   
-   
-
-
+  
     
     
     @OneToMany(type=>patientEntity, (patient) =>patient.medecin,{
         cascade: true,
     })
-        patients: patientEntity[];   
+        patientMed: patientEntity[];   
+
+
+     @OneToMany(type=>patientEntity, (patient) =>patient.infirmier,{
+          cascade: true,
+      })
+          patientInf: patientEntity[];   
     
 
 

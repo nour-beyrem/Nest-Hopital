@@ -8,7 +8,7 @@ import { userEntity } from "./user.entity";
 export class patientEntity extends TimestampEntity{
 
     @PrimaryGeneratedColumn()
-    matricule: string;
+    id: string;
 
     @Column({type: 'varchar'})
     nom: string;
@@ -48,7 +48,7 @@ export class patientEntity extends TimestampEntity{
     motifConsultation: string;
 
     @Column({type: 'varchar'})
-    signesEctuels: string;
+    signesActuels: string;
 
     @Column({})
     age: number;
@@ -106,7 +106,7 @@ export class patientEntity extends TimestampEntity{
 
 
 
-    @ManyToOne( type=>userEntity, (user)=> user.patients,
+    @ManyToOne( type=>userEntity, (user)=> user.patientMed,
     {
       
       nullable: true,  eager: true
@@ -115,7 +115,7 @@ export class patientEntity extends TimestampEntity{
      medecin: userEntity;
 
 
-     @ManyToOne( type=>userEntity, (user)=> user.patients,
+     @ManyToOne( type=>userEntity, (user)=> user.patientInf,
      {
        
        nullable: true,  eager: true

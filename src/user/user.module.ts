@@ -10,6 +10,7 @@ import { UserService } from './user.service';
 @Module({
   controllers: [UserController],
   providers: [UserService, JwtStrategy],
+  exports: [UserService],
   imports: [TypeOrmModule.forFeature([userEntity]), PassportModule.register({defaultStrategy: 'jwt'}),JwtModule.register({
     secret: 'nourSecretKey',
     signOptions: {

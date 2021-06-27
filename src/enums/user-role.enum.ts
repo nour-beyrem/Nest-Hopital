@@ -4,6 +4,7 @@ export enum UserRoleEnum {
     RECEPTION = 'reception',
     RADIOLOGUE = 'radiologue',
     BIOLOGISTE = 'biologiste',
-    PHARMACIEN = 'pharmacien',
-    CHEF = 'chef'
+    CHEFSERVICE = 'chefService',
+    PHARMACIEN = 'pharmacien'
+    
   }

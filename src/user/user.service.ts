@@ -25,7 +25,7 @@ export class UserService {
 
        async getUsers(user): Promise<userEntity[]>
        {
-        if (user.role === UserRoleEnum.CHEF )
+        if (user.role === UserRoleEnum.CHEFSERVICE )
             return await this.userRepository.find();
         else 
             throw new UnauthorizedException();
@@ -43,7 +43,7 @@ export class UserService {
              throw new NotFoundException(`user d'id ${username} n'existe pas`);
            }
            
-         if (user.role === UserRoleEnum.CHEF ||user.role === UserRoleEnum.RECEPTION || personnel.username === user.username)
+         if (user.role === UserRoleEnum.CHEFSERVICE ||user.role === UserRoleEnum.RECEPTION || personnel.username === user.username)
             return personnel;
    
          else 
@@ -56,7 +56,7 @@ export class UserService {
        async getByRole(role:string,user): Promise<userEntity[]>
        {
             
-        if (user.role === UserRoleEnum.RECEPTION ||user.role === UserRoleEnum.CHEF || user.role === role)
+        if (user.role === UserRoleEnum.RECEPTION ||user.role === UserRoleEnum.CHEFSERVICE || user.role === role)
            return await this.userRepository.find({role});
    
         else 
@@ -66,7 +66,7 @@ export class UserService {
 
        async addUser(userData: AddUserDto, user1) : Promise<Partial<userEntity>>{
    
-       //  if (user1.role === UserRoleEnum.CHEF ) {
+        if (user1.role === UserRoleEnum.CHEFSERVICE ) {
            const user = this.userRepository.create({
              ...userData
            });
@@ -82,10 +82,10 @@ export class UserService {
              email: user.email,
              role: user.role
            };
-        // }
+         }
    
-       //  else 
-       //  throw new UnauthorizedException();
+        else 
+         throw new UnauthorizedException();
          
          
          
@@ -107,7 +107,7 @@ export class UserService {
    
      async deleteUser(username: string, user): Promise<unknown> {
    
-       if (user.role === UserRoleEnum.CHEF){
+       if (user.role === UserRoleEnum.CHEFSERVICE){
          const deletedUser = await this.userRepository.delete(username);
          if(! deletedUser) {
            throw new NotFoundException(`user d'id ${username} n'existe pas`);
@@ -131,7 +131,7 @@ export class UserService {
      if (! updatedUser) {
        throw new NotFoundException(`user d'id ${username} n'existe pas`);
      } 
-     if (user.role === UserRoleEnum.CHEF || updatedUser.username === user.username){
+     if (user.role === UserRoleEnum.CHEFSERVICE || updatedUser.username === user.username){
        return await this.userRepository.save(updatedUser);
      }
      else 
